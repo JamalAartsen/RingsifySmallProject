@@ -27,6 +27,16 @@
         tools:visibility="visible" />
 
     <ImageView
+        android:id="@+id/progress_ring_loading"
+        android:layout_centerInParent="true"
+        android:src="@drawable/avd_anim_ring_loading_round_zoom"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:layout_marginStart="200dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ImageView
         android:id="@+id/sad_icon_not_loaded"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -1,16 +1,25 @@
 package com.jamal.ringsifysmallproject.ui.characters
 
+import android.graphics.drawable.Animatable2
+import android.graphics.drawable.AnimatedVectorDrawable
+import android.graphics.drawable.Drawable
+import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import android.widget.ImageView
+import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.vectordrawable.graphics.drawable.Animatable2Compat
+import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
 import com.jamal.ringsifysmallproject.R
 import com.jamal.ringsifysmallproject.databinding.FragmentCharactersBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,7 +30,10 @@ class CharacterFragment : Fragment(R.layout.fragment_characters) {
     private val viewModel by viewModels<CharacterViewModel>()
     private var _binding: FragmentCharactersBinding? = null
     private val binding get() = _binding!!
+    private lateinit var avd: AnimatedVectorDrawable
+    private lateinit var avd2: AnimatedVectorDrawableCompat
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -48,11 +60,28 @@ class CharacterFragment : Fragment(R.layout.fragment_characters) {
 
         characterAdapter.addLoadStateListener { loadState ->
             binding.apply {
-                progressBarCharacters.isVisible = loadState.source.refresh is LoadState.Loading
                 recyclerViewCharacter.isVisible = loadState.source.refresh is LoadState.NotLoading
                 buttonRetryCharacters.isVisible = loadState.source.refresh is LoadState.Error
                 textViewError.isVisible = loadState.source.refresh is LoadState.Error
                 sadIconNotLoaded.isVisible = loadState.source.refresh is LoadState.Error
+                progressRingLoading.isVisible = loadState.source.refresh is LoadState.Loading
+
+                val drawableRingLoading = progressRingLoading.drawable
+
+                if (drawableRingLoading is AnimatedVectorDrawable) {
+                    avd = drawableRingLoading
+                    avd.start()
+                    drawableRingLoading.registerAnimationCallback(object : Animatable2.AnimationCallback() {
+                        override fun onAnimationEnd(drawable: Drawable?) {
+                            super.onAnimationEnd(drawable)
+
+                            avd.start()
+                        }
+                    })
+                } else {
+                    avd2 = drawableRingLoading as AnimatedVectorDrawableCompat
+                    avd2.start()
+                }
 
                 if (loadState.source.refresh is LoadState.NotLoading &&
                     loadState.append.endOfPaginationReached &&

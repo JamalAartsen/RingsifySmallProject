@@ -1,5 +1,6 @@
 package com.jamal.ringsifysmallproject.ui.characters
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.switchMap
@@ -20,7 +21,8 @@ class CharacterViewModel @Inject constructor(private val repository: TheOneRepos
     }
 
     fun searchCharacter(query: String) {
-        currentQuery.value = query
+        currentQuery.value = query.lowercase().replaceFirstChar { it.uppercase() }
+        Log.d("CharacterViewModel", query.lowercase().replaceFirstChar { it.uppercase() })
     }
 
     companion object {
