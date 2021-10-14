@@ -16,7 +16,7 @@ class CharacterViewModel @Inject constructor(
 ) :
     ViewModel() {
 
-    private val currentQuery = state.getLiveData(CURRENT_QUERY, DEFAULT_QUERY)
+    val currentQuery = state.getLiveData(CURRENT_QUERY, DEFAULT_QUERY)
 
     val characters = currentQuery.switchMap { queryString ->
         repository.getCharacters(queryString).cachedIn(viewModelScope)

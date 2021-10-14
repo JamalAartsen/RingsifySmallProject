@@ -28,6 +28,7 @@ class CharacterFragment : Fragment(R.layout.fragment_characters), CharacterAdapt
     private val binding get() = _binding!!
     private lateinit var avd: AnimatedVectorDrawable
     private lateinit var avd2: AnimatedVectorDrawableCompat
+    private lateinit var searchView: SearchView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -106,9 +107,15 @@ class CharacterFragment : Fragment(R.layout.fragment_characters), CharacterAdapt
         inflater.inflate(R.menu.menu_character, menu)
 
         val searchItem = menu.findItem(R.id.action_search)
-        val searchView = searchItem.actionView as SearchView
+        searchView = searchItem.actionView as SearchView
         searchView.apply {
             queryHint = "Gandalf..."
+        }
+
+        val searchQuery = viewModel.currentQuery.value
+        if (searchQuery != null && searchQuery.isNotEmpty()) {
+            searchItem.expandActionView()
+            searchView.setQuery(searchQuery, false)
         }
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -143,6 +150,7 @@ class CharacterFragment : Fragment(R.layout.fragment_characters), CharacterAdapt
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        searchView.setOnQueryTextListener(null)
     }
 
     override fun onItemClick(character: Character) {
