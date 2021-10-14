@@ -1,10 +1,7 @@
 package com.jamal.ringsifysmallproject.ui.characters
 
 import android.util.Log
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.switchMap
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import androidx.paging.cachedIn
 import com.jamal.ringsifysmallproject.data.TheOneRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,10 +10,13 @@ import java.lang.StringBuilder
 import java.util.*
 
 @HiltViewModel
-class CharacterViewModel @Inject constructor(private val repository: TheOneRepository) :
+class CharacterViewModel @Inject constructor(
+    private val repository: TheOneRepository,
+    state: SavedStateHandle
+) :
     ViewModel() {
 
-    private val currentQuery = MutableLiveData(DEFAULT_QUERY)
+    private val currentQuery = state.getLiveData(CURRENT_QUERY, DEFAULT_QUERY)
 
     val characters = currentQuery.switchMap { queryString ->
         repository.getCharacters(queryString).cachedIn(viewModelScope)
@@ -29,6 +29,7 @@ class CharacterViewModel @Inject constructor(private val repository: TheOneRepos
     }
 
     companion object {
+        private const val CURRENT_QUERY = "current_query"
         private const val DEFAULT_QUERY = ""
     }
 
@@ -42,13 +43,13 @@ class CharacterViewModel @Inject constructor(private val repository: TheOneRepos
             val strArray = query.split(" ").toTypedArray()
             val builder = StringBuilder()
             for (s in strArray) {
-                val cap = s.substring(0, 1).uppercase(Locale.getDefault()) + s.substring(1).trim()
+                val cap = s.substring(0, 1).uppercase(Locale.getDefault()) + s.substring(1)
                 builder.append("$cap ")
             }
 
             return builder.toString().trim()
         } else {
-            return " "
+            return ""
         }
     }
 }

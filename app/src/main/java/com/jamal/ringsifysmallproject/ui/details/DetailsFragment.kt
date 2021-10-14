@@ -23,8 +23,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details_character) {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentDetailsCharacterBinding.inflate(inflater, container, false)
-        val view = binding.root
-        return view
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
