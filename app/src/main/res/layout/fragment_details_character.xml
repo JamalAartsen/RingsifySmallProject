@@ -1,6 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".ui.details.DetailsFragment">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/details_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:textColor="@color/brown_312113"
+                android:textSize="22dp"
+                android:textStyle="bold"
+                android:text="Gandalf" />
+
+            <TextView
+                android:id="@+id/character_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:textColor="@color/black"
+                android:textStyle="normal"
+                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin et dolor nec sem ultricies iaculis. Praesent porta, ligula eu tincidunt malesuada, orci arcu volutpat arcu, et congue turpis risus nec dolor. Suspendisse semper malesuada odio, id molestie erat congue nec. Proin pulvinar urna sit amet dignissim dapibus. Sed commodo ac nunc pellentesque dictum." />
+
+            <TextView
+                android:id="@+id/character_race_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Race"
+                android:textColor="@color/brown_312113"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/character_race"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Maiar"
+                android:textColor="@color/black"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/character_birth_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Birth"
+                android:textColor="@color/brown_312113"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/character_birth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Before the Shaping of Arda"
+                android:textColor="@color/black"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/character_death_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Death"
+                android:textColor="@color/brown_312113"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/character_death"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="January 253019 ,Battle of the Peak immortal"
+                android:textColor="@color/black"
+                android:textStyle="normal" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/fandom_link_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:backgroundTint="@color/brown_312113"
+                android:text="Fandom Page" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

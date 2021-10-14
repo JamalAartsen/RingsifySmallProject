@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jamal.ringsifysmallproject.data.Character
 import com.jamal.ringsifysmallproject.databinding.RowLayoutCharactersBinding
 
-class CharacterAdapter : PagingDataAdapter<Character, CharacterAdapter.ViewHolder>(
+class CharacterAdapter(private val listener: OnItemClickListener) : PagingDataAdapter<Character, CharacterAdapter.ViewHolder>(
     CHARACTER_COMPARATOR) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -25,8 +25,20 @@ class CharacterAdapter : PagingDataAdapter<Character, CharacterAdapter.ViewHolde
         return ViewHolder(binding)
     }
 
-    class ViewHolder(private val binding: RowLayoutCharactersBinding) :
+    inner class ViewHolder(private val binding: RowLayoutCharactersBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            binding.root.setOnClickListener {
+                val position = bindingAdapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val item = getItem(position)
+                    if (item != null) {
+                        listener.onItemClick(item)
+                    }
+                }
+            }
+        }
 
             fun bind(character: Character) {
                 binding.apply {
@@ -35,6 +47,10 @@ class CharacterAdapter : PagingDataAdapter<Character, CharacterAdapter.ViewHolde
                 }
             }
 
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(character: Character)
     }
 
     companion object {

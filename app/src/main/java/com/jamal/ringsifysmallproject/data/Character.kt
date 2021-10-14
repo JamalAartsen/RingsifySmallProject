@@ -6,7 +6,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Character(
     val _id: String,
-    val race: String,
+    val race: String?,
     val gender: String?,
     val birth: String?,
     val spouse: String?,
