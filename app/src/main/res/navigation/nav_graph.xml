@@ -8,8 +8,8 @@
     <fragment
         android:id="@+id/characterFragment"
         android:name="com.jamal.ringsifysmallproject.ui.characters.CharacterFragment"
-        android:label="fragment_characters"
-        tools:layout="@layout/fragment_characters" >
+        android:label="Characters"
+        tools:layout="@layout/fragment_characters">
         <action
             android:id="@+id/action_characterFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
@@ -17,8 +17,8 @@
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.jamal.ringsifysmallproject.ui.details.DetailsFragment"
-        android:label="fragment_details_character"
-        tools:layout="@layout/fragment_details_character" >
+        android:label="Details"
+        tools:layout="@layout/fragment_details_character">
         <argument
             android:name="character"
             app:argType="com.jamal.ringsifysmallproject.data.Character" />

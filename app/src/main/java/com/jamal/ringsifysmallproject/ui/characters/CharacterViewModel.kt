@@ -38,13 +38,17 @@ class CharacterViewModel @Inject constructor(private val repository: TheOneRepos
      * @author Jamal Aartsen
      */
     private fun createUpperCase(query: String): String {
-        val strArray = query.split(" ").toTypedArray()
-        val builder = StringBuilder()
-        for (s in strArray) {
-            val cap = s.substring(0, 1).uppercase(Locale.getDefault()) + s.substring(1).trim()
-            builder.append("$cap ")
-        }
+        if (query.isNotBlank() || query.isNotEmpty()) {
+            val strArray = query.split(" ").toTypedArray()
+            val builder = StringBuilder()
+            for (s in strArray) {
+                val cap = s.substring(0, 1).uppercase(Locale.getDefault()) + s.substring(1).trim()
+                builder.append("$cap ")
+            }
 
-        return builder.toString().trim()
+            return builder.toString().trim()
+        } else {
+            return " "
+        }
     }
 }
