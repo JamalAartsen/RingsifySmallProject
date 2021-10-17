@@ -44,6 +44,7 @@ class CharacterAdapter(private val listener: OnItemClickListener) : PagingDataAd
                 binding.apply {
                     nameCharacter.text = character.name
                     raceCharacter.text = character.race
+                    root.transitionName = "row$bindingAdapterPosition"
                 }
             }
 
