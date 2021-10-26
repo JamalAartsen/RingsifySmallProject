@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">Ringsify</string>
     <string name="search">Search</string>
+    <string name="character_img">character-img</string>
+    <string name="realm">Realm</string>
+    <string name="culture">Culture</string>
+    <string name="birth">Birth</string>
+    <string name="death">Death</string>
+    <string name="race">Race</string>
+    <string name="fandom_page">Fandom Page</string>
 </resources>

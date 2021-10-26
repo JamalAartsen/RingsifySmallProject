@@ -9,7 +9,8 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="toolbar_background_color">#714C32</color>
-    <color name="brown_312113">#49311d</color>
+    <color name="brown_312113">#312113</color>
+    <color name="status_bar">#49311D</color>
     <color name="background_app">#f6ddc7</color>
     <color name="brown_7a5230">#7A5230</color>
 

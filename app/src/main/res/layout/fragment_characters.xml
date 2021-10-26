@@ -6,13 +6,36 @@
     android:layout_height="match_parent"
     tools:context=".ui.characters.CharacterFragment">
 
+    <TextView
+        android:id="@+id/all_characters"
+        android:text="All characters"
+        android:textSize="22dp"
+        android:textColor="@color/brown_312113"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/all_characters_text"
+        android:text="Below are all the characters from lord of the rings that we currently have in the database."
+        android:layout_below="@+id/all_characters"
+        android:textColor="@color/brown_312113"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="4dp"
+        android:fontFamily="@font/prompt"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_character"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/all_characters_text"
         android:clipToPadding="false"
         android:paddingTop="16dp"
-        android:paddingBottom="16dp"
         android:theme="@style/MyEdgeOverlayTheme"
         tools:listitem="@layout/row_layout_characters" />
 

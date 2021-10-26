@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
 
         val appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
