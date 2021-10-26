@@ -5,10 +5,10 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.jamal.ringsifysmallproject.data.Character
+import com.jamal.ringsifysmallproject.data.RingsifyCharacter
 import com.jamal.ringsifysmallproject.databinding.RowLayoutCharactersBinding
 
-class CharacterAdapter(private val listener: OnItemClickListener) : PagingDataAdapter<Character, CharacterAdapter.ViewHolder>(
+class CharacterAdapter(private val listener: OnItemClickListener) : PagingDataAdapter<RingsifyCharacter, CharacterAdapter.ViewHolder>(
     CHARACTER_COMPARATOR) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -40,26 +40,25 @@ class CharacterAdapter(private val listener: OnItemClickListener) : PagingDataAd
             }
         }
 
-            fun bind(character: Character) {
+            fun bind(character: RingsifyCharacter) {
                 binding.apply {
                     nameCharacter.text = character.name
                     raceCharacter.text = character.race
-                    root.transitionName = "row$bindingAdapterPosition"
                 }
             }
 
     }
 
     interface OnItemClickListener {
-        fun onItemClick(character: Character)
+        fun onItemClick(character: RingsifyCharacter)
     }
 
     companion object {
-        private val CHARACTER_COMPARATOR = object : DiffUtil.ItemCallback<Character>() {
-            override fun areItemsTheSame(oldItem: Character, newItem: Character) =
+        private val CHARACTER_COMPARATOR = object : DiffUtil.ItemCallback<RingsifyCharacter>() {
+            override fun areItemsTheSame(oldItem: RingsifyCharacter, newItem: RingsifyCharacter) =
                 oldItem._id == newItem._id
 
-            override fun areContentsTheSame(oldItem: Character, newItem: Character) =
+            override fun areContentsTheSame(oldItem: RingsifyCharacter, newItem: RingsifyCharacter) =
                 oldItem == newItem
         }
     }

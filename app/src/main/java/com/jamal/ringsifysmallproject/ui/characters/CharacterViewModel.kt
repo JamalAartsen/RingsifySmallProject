@@ -3,7 +3,7 @@ package com.jamal.ringsifysmallproject.ui.characters
 import android.util.Log
 import androidx.lifecycle.*
 import androidx.paging.cachedIn
-import com.jamal.ringsifysmallproject.data.TheOneRepository
+import com.jamal.ringsifysmallproject.data.RingsifyRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import java.lang.StringBuilder
@@ -11,7 +11,7 @@ import java.util.*
 
 @HiltViewModel
 class CharacterViewModel @Inject constructor(
-    private val repository: TheOneRepository,
+    private val repository: RingsifyRepository,
     state: SavedStateHandle
 ) :
     ViewModel() {
@@ -22,9 +22,9 @@ class CharacterViewModel @Inject constructor(
         repository.getCharacters(queryString).cachedIn(viewModelScope)
     }
 
-    fun searchCharacter(query: String) {
+    fun searchCharacter(query: String?) {
         currentQuery.value = createUpperCase(query)
-        Log.d("CharacterViewModel", createUpperCase(query))
+        Log.d("CharacterViewModel", createUpperCase(query).toString())
 
     }
 
@@ -38,18 +38,22 @@ class CharacterViewModel @Inject constructor(
      *
      * @author Jamal Aartsen
      */
-    private fun createUpperCase(query: String): String {
-        if (query.isNotBlank() || query.isNotEmpty()) {
-            val strArray = query.split(" ").toTypedArray()
-            val builder = StringBuilder()
-            for (s in strArray) {
-                val cap = s.substring(0, 1).uppercase(Locale.getDefault()) + s.substring(1)
-                builder.append("$cap ")
-            }
+    private fun createUpperCase(query: String?): String? {
+        if (query != null) {
+            if (query.isNotBlank() || query.isNotEmpty()) {
+                val strArray = query.split(" ").toTypedArray()
+                val builder = StringBuilder()
+                for (s in strArray) {
+                    val cap = s.substring(0, 1).uppercase(Locale.getDefault()) + s.substring(1)
+                    builder.append("$cap ")
+                }
 
-            return builder.toString().trim()
+                return builder.toString().trim()
+            } else {
+                return null
+            }
         } else {
-            return ""
+            return null
         }
     }
 }

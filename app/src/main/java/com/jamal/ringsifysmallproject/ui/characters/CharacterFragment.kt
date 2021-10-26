@@ -11,13 +11,12 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
 import com.jamal.ringsifysmallproject.R
-import com.jamal.ringsifysmallproject.data.Character
+import com.jamal.ringsifysmallproject.data.RingsifyCharacter
 import com.jamal.ringsifysmallproject.databinding.FragmentCharactersBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -154,7 +153,7 @@ class CharacterFragment : Fragment(R.layout.fragment_characters), CharacterAdapt
         searchView.setOnQueryTextListener(null)
     }
 
-    override fun onItemClick(character: Character) {
+    override fun onItemClick(character: RingsifyCharacter) {
         val action = CharacterFragmentDirections.actionCharacterFragmentToDetailsFragment(character)
         findNavController().navigate(action)
     }

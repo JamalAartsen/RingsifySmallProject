@@ -29,25 +29,25 @@ class DetailsFragment : Fragment(R.layout.fragment_details_character) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.apply {
-            val character = args.character
-
-            detailsName.text = character.name
-            characterRace.text = character.race
-            characterBirth.text = character.birth
-            characterDeath.text = character.death
-
-            var uri: Uri? = null
-            uri = if (uri != null) {
-                Uri.parse(character.wikiUrl)
-            } else {
-                Uri.parse("https://lotr.fandom.com/")
-            }
-                       val intent = Intent(Intent.ACTION_VIEW, uri)
-            fandomLinkButton.setOnClickListener {
-                context?.startActivity(intent)
-            }
-        }
+//        binding.apply {
+//            val character = args.character
+//
+//            detailsName.text = character.name
+//            characterRace.text = character.race
+//            characterBirth.text = character.birth
+//            characterDeath.text = character.death
+//
+//            var uri: Uri? = null
+//            uri = if (uri != null) {
+//                Uri.parse(character.wikiUrl)
+//            } else {
+//                Uri.parse("https://lotr.fandom.com/")
+//            }
+//                       val intent = Intent(Intent.ACTION_VIEW, uri)
+//            fandomLinkButton.setOnClickListener {
+//                context?.startActivity(intent)
+//            }
+//        }
     }
 
     override fun onDestroyView() {

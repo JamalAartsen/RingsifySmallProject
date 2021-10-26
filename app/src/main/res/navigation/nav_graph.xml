@@ -21,6 +21,6 @@
         tools:layout="@layout/fragment_details_character">
         <argument
             android:name="character"
-            app:argType="com.jamal.ringsifysmallproject.data.Character" />
+            app:argType="com.jamal.ringsifysmallproject.data.RingsifyCharacter" />
     </fragment>
 </navigation>
