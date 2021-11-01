@@ -14,6 +14,7 @@ interface RingsifyAPI {
     suspend fun getCharacters(
         @Query("page") page: Int,
         @Query("limit") limit: Int,
-        @Query("name") searchTerm: String?
+        @Query("name") searchTerm: String?,
+        @Query("race") filterRace: String?
     ): RingsifyCharacterResponse
 }

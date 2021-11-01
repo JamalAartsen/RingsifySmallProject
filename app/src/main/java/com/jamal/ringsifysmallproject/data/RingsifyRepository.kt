@@ -7,13 +7,14 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.liveData
 import com.jamal.ringsifysmallproject.api.RingsifyAPI
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class RingsifyRepository @Inject constructor(private val ringsifyApi: RingsifyAPI) {
 
-    fun getCharacters(query: String?): LiveData<PagingData<RingsifyCharacter>> {
+    fun getCharacters(query: String?, filterRace: String?): Flow<PagingData<RingsifyCharacter>> {
         Log.d("Repository: ", query.toString())
         return Pager(
             config = PagingConfig(
@@ -23,15 +24,16 @@ class RingsifyRepository @Inject constructor(private val ringsifyApi: RingsifyAP
             ),
             pagingSourceFactory =
             {
-                TheOnePagingSource(
+                RingsifyPagingSource(
                     ringsifyApi,
-                    if (query == "") {
+                    query = if (query == "") {
                         null
                     } else {
                         query
-                    }
+                    },
+                    filterRace = filterRace
                 )
             }
-        ).liveData
+        ).flow
     }
 }

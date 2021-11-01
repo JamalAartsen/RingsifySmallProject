@@ -8,9 +8,10 @@ import java.io.IOException
 
 private const val CHARACTER_STARTING_PAGE_INDEX = 1
 
-class TheOnePagingSource(
+class RingsifyPagingSource(
     private val ringsifyApi: RingsifyAPI,
-    private val query: String?
+    private val query: String?,
+    private val filterRace: String?
 ) : PagingSource<Int, RingsifyCharacter>() {
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, RingsifyCharacter> {
         val position = params.key ?: CHARACTER_STARTING_PAGE_INDEX
@@ -19,7 +20,8 @@ class TheOnePagingSource(
             val response = ringsifyApi.getCharacters(
                 searchTerm = query,
                 limit = params.loadSize,
-                page = position
+                page = position,
+                filterRace = filterRace
             )
             val characters = response.results
 
