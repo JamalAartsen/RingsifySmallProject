@@ -11,9 +11,6 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,8 +20,6 @@ import com.jamal.ringsifysmallproject.data.RingsifyCharacter
 import com.jamal.ringsifysmallproject.databinding.FragmentCharactersBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
@@ -157,7 +152,8 @@ class CharacterFragment : Fragment(R.layout.fragment_characters), CharacterAdapt
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_filter -> {
-                viewModel.filterRaces(Races.Elves)
+                val filterDialogFragment = FilterDialogFragment()
+                activity?.let { filterDialogFragment.show(it.supportFragmentManager, "filterFragment") }
                 true
             }
             else -> super.onOptionsItemSelected(item)
