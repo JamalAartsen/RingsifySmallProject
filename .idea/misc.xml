@@ -4,11 +4,17 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/androidprojecten/RingsifySmallProject/app/src/main/res/drawable/avd_anim_ring_loading_round_zoom.xml" value="0.23771929824561402" />
+        <entry key="..\:/androidprojecten/RingsifySmallProject/app/src/main/res/drawable/dialog_bg.xml" value="0.22763157894736843" />
         <entry key="..\:/androidprojecten/RingsifySmallProject/app/src/main/res/drawable/ic_icons8_one_ring.xml" value="0.22763157894736843" />
+        <entry key="..\:/androidprojecten/RingsifySmallProject/app/src/main/res/drawable/ic_icons8_one_ring_black.xml" value="0.22763157894736843" />
         <entry key="..\:/androidprojecten/RingsifySmallProject/app/src/main/res/drawable/ic_sad_black.xml" value="0.22763157894736843" />
         <entry key="..\:/androidprojecten/RingsifySmallProject/app/src/main/res/drawable/row_background_gradient.xml" value="0.2703125" />
+        <entry key="..\:/androidprojecten/RingsifySmallProject/app/src/main/res/font/font.xml" value="0.2394736842105263" />
+        <entry key="..\:/androidprojecten/RingsifySmallProject/app/src/main/res/font/prompt_semibold.xml" value="0.2394736842105263" />
         <entry key="..\:/androidprojecten/RingsifySmallProject/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/androidprojecten/RingsifySmallProject/app/src/main/res/layout/character_load_state_footer.xml" value="0.21403508771929824" />
+        <entry key="..\:/androidprojecten/RingsifySmallProject/app/src/main/res/layout/dialog_filter.xml" value="0.4" />
+        <entry key="..\:/androidprojecten/RingsifySmallProject/app/src/main/res/layout/dropdown_item.xml" value="1.0" />
         <entry key="..\:/androidprojecten/RingsifySmallProject/app/src/main/res/layout/fragment_characters.xml" value="0.264" />
         <entry key="..\:/androidprojecten/RingsifySmallProject/app/src/main/res/layout/fragment_details_character.xml" value="0.3087719298245614" />
         <entry key="..\:/androidprojecten/RingsifySmallProject/app/src/main/res/layout/row_layout_characters.xml" value="0.25416666666666665" />

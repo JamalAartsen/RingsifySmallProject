@@ -3,29 +3,53 @@ package com.jamal.ringsifysmallproject.ui.characters
 import android.util.Log
 import androidx.lifecycle.*
 import androidx.paging.cachedIn
-import com.jamal.ringsifysmallproject.data.TheOneRepository
+import com.jamal.ringsifysmallproject.data.RingsifyRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 import java.lang.StringBuilder
 import java.util.*
 
+@ExperimentalCoroutinesApi
 @HiltViewModel
 class CharacterViewModel @Inject constructor(
-    private val repository: TheOneRepository,
+    private val repository: RingsifyRepository,
     state: SavedStateHandle
 ) :
     ViewModel() {
 
     val currentQuery = state.getLiveData(CURRENT_QUERY, DEFAULT_QUERY)
+    private val filterRace: MutableStateFlow<Races?> = MutableStateFlow(null)
 
-    val characters = currentQuery.switchMap { queryString ->
-        repository.getCharacters(queryString).cachedIn(viewModelScope)
+    private val charactersFlow = combine(currentQuery.asFlow(), filterRace) { searchQuery, filter ->
+        Pair(searchQuery, filter)
+    }.flatMapLatest { (s, f) ->
+        repository.getCharacters(s, f?.toString()).cachedIn(viewModelScope)
     }
 
-    fun searchCharacter(query: String) {
-        currentQuery.value = createUpperCase(query)
-        Log.d("CharacterViewModel", createUpperCase(query))
+    val characters = charactersFlow.asLiveData()
 
+
+    private val String.capitalizeWord
+        get() = this.lowercase(Locale.getDefault()).split(" ").joinToString(" ") {
+            it.replaceFirstChar { it ->
+                if (it.isLowerCase()) it.titlecase(
+                    Locale.getDefault()
+                ) else it.toString()
+            }
+        }
+
+    fun searchCharacter(query: String?) {
+        currentQuery.value = query!!.capitalizeWord
+    }
+
+    fun filterRaces(race: Races) {
+        if (race == Races.Null) {
+            filterRace.value = null
+        } else {
+            filterRace.value = race
+        }
     }
 
     companion object {
@@ -33,23 +57,9 @@ class CharacterViewModel @Inject constructor(
         private const val DEFAULT_QUERY = ""
     }
 
-    /**
-     * Makes the first char of every string a uppercase
-     *
-     * @author Jamal Aartsen
-     */
-    private fun createUpperCase(query: String): String {
-        if (query.isNotBlank() || query.isNotEmpty()) {
-            val strArray = query.split(" ").toTypedArray()
-            val builder = StringBuilder()
-            for (s in strArray) {
-                val cap = s.substring(0, 1).uppercase(Locale.getDefault()) + s.substring(1)
-                builder.append("$cap ")
-            }
-
-            return builder.toString().trim()
-        } else {
-            return ""
-        }
-    }
 }
+
+enum class Races {
+    Men, Elves, Hobbits, Null
+}
+

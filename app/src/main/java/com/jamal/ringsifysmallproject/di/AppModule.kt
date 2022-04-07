@@ -1,6 +1,6 @@
 package com.jamal.ringsifysmallproject.di
 
-import com.jamal.ringsifysmallproject.api.TheOneAPI
+import com.jamal.ringsifysmallproject.api.RingsifyAPI
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,12 +17,12 @@ object AppModule {
     @Singleton
     fun provideRetrofit(): Retrofit =
         Retrofit.Builder()
-            .baseUrl(TheOneAPI.BASE_URL)
+            .baseUrl(RingsifyAPI.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
     @Provides
     @Singleton
-    fun provideTheOneApi(retrofit: Retrofit): TheOneAPI =
-        retrofit.create(TheOneAPI::class.java)
+    fun provideTheOneApi(retrofit: Retrofit): RingsifyAPI =
+        retrofit.create(RingsifyAPI::class.java)
 }

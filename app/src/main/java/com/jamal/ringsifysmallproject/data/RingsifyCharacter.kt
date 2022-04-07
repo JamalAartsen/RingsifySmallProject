@@ -4,14 +4,15 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Character(
+data class RingsifyCharacter(
     val _id: String,
+    val name: String,
+    val imageUrl: String?,
+    val description: String?,
     val race: String?,
-    val gender: String?,
     val birth: String?,
-    val spouse: String?,
     val death: String?,
     val realm: String?,
-    val name: String,
-    val wikiUrl: String?
+    val culture: String?,
+    val fandomUrl: String?
 ) : Parcelable

@@ -1,30 +1,29 @@
 package com.jamal.ringsifysmallproject.data
 
-import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.jamal.ringsifysmallproject.api.TheOneAPI
+import com.jamal.ringsifysmallproject.api.RingsifyAPI
 import retrofit2.HttpException
 import java.io.IOException
 
 private const val CHARACTER_STARTING_PAGE_INDEX = 1
 
-class TheOnePagingSource(
-    private val theOneApi: TheOneAPI,
-    private val query: String
-) : PagingSource<Int, Character>() {
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Character> {
+class RingsifyPagingSource(
+    private val ringsifyApi: RingsifyAPI,
+    private val query: String?,
+    private val filterRace: String?
+) : PagingSource<Int, RingsifyCharacter>() {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, RingsifyCharacter> {
         val position = params.key ?: CHARACTER_STARTING_PAGE_INDEX
 
         return try {
-            val response = theOneApi.getCharacters(
-                auth = "${TheOneAPI.BEARER_TOKEN_TEXT} ${TheOneAPI.BEARER_TOKEN}",
-                query = query,
-                limit_per_page = params.loadSize,
-                page = position
+            val response = ringsifyApi.getCharacters(
+                searchTerm = query,
+                limit = params.loadSize,
+                page = position,
+                filterRace = filterRace
             )
-            val characters = response.docs
-            Log.d("TheOnePagingSource", "$characters")
+            val characters = response.results
 
             LoadResult.Page(
                 data = characters,
@@ -38,7 +37,7 @@ class TheOnePagingSource(
         }
     }
 
-    override fun getRefreshKey(state: PagingState<Int, Character>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, RingsifyCharacter>): Int? {
         return null
     }
 }

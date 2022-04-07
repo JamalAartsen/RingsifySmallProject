@@ -11,16 +11,17 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
 import com.jamal.ringsifysmallproject.R
-import com.jamal.ringsifysmallproject.data.Character
+import com.jamal.ringsifysmallproject.data.RingsifyCharacter
 import com.jamal.ringsifysmallproject.databinding.FragmentCharactersBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
+@ExperimentalCoroutinesApi
 @AndroidEntryPoint
 class CharacterFragment : Fragment(R.layout.fragment_characters), CharacterAdapter.OnItemClickListener {
 
@@ -148,13 +149,24 @@ class CharacterFragment : Fragment(R.layout.fragment_characters), CharacterAdapt
         })
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_filter -> {
+                val filterDialogFragment = FilterDialogFragment()
+                activity?.let { filterDialogFragment.show(it.supportFragmentManager, "filterFragment") }
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
         searchView.setOnQueryTextListener(null)
     }
 
-    override fun onItemClick(character: Character) {
+    override fun onItemClick(character: RingsifyCharacter) {
         val action = CharacterFragmentDirections.actionCharacterFragmentToDetailsFragment(character)
         findNavController().navigate(action)
     }

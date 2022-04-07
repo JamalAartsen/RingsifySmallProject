@@ -1,4 +1,39 @@
 <resources>
     <string name="app_name">Ringsify</string>
     <string name="search">Search</string>
+    <string name="character_img">character-img</string>
+    <string name="realm">Realm</string>
+    <string name="culture">Culture</string>
+    <string name="birth">Birth</string>
+    <string name="death">Death</string>
+    <string name="race">Race</string>
+    <string name="fandom_page">Fandom Page</string>
+    <string name="races">Races</string>
+    <string name="filter_race">Filter race</string>
+    <string name="ascending">Ascending</string>
+    <string name="descending">Descending</string>
+    <string name="sort_name_by">Sort name by</string>
+    <string name="filter">Filter</string>
+
+    <string-array name="races">
+        <item>All races</item>
+        <item>Men</item>
+        <item>Orcs</item>
+        <item>Dragons</item>
+        <item>Elves</item>
+        <item>Dwarves</item>
+        <item>Hobbits</item>
+        <item>Spiders</item>
+        <item>Maiar</item>
+        <item>Ainur</item>
+        <item>Raven</item>
+        <item>Wraith</item>
+        <item>God</item>
+        <item>Wolfhound</item>
+        <item>Half-elven</item>
+        <item>Balrog</item>
+        <item>Undead</item>
+        <item>Werewolves</item>
+        <item>Ents</item>
+    </string-array>
 </resources>

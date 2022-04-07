@@ -11,11 +11,12 @@
     android:clickable="true"
     android:focusable="true"
     app:cardCornerRadius="5dp"
-    app:cardElevation="7dp">
+    app:cardElevation="5dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="5dp"
         android:background="@drawable/row_background_gradient">
 
         <TextView
@@ -25,8 +26,9 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="5dp"
-            android:layout_toStartOf="@id/ring_image"
+            android:layout_toStartOf="@id/character_image"
             android:ellipsize="end"
+            android:fontFamily="@font/prompt_medium"
             android:maxLines="1"
             android:textColor="@color/black"
             android:textSize="20sp"
@@ -40,18 +42,19 @@
             android:layout_below="@id/name_character"
             android:layout_marginStart="10dp"
             android:layout_marginBottom="10dp"
+            android:fontFamily="@font/prompt"
             android:textColor="@color/black"
             android:textSize="14sp"
             tools:text="Men" />
 
         <ImageView
-            android:id="@+id/ring_image"
+            android:id="@+id/character_image"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="10dp"
-            app:srcCompat="@drawable/ic_icons8_one_ring_black" />
+            app:srcCompat="@drawable/no_image" />
 
     </RelativeLayout>
 
